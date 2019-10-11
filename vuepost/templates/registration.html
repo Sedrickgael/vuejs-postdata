@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Froala Design Blocks - Skeleton</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-design-blocks/2.0.1/css/froala_blocks.min.css">
+    <style>
+            .lds-dual-ring {
+            display: inline-block;
+            width: 64px;
+            height: 64px;
+            }
+            .lds-dual-ring:after {
+            content: " ";
+            display: block;
+            width: 46px;
+            height: 46px;
+            margin: 1px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            border-color: #631515 transparent rgb(46, 23, 23) transparent;
+            animation: lds-dual-ring 1.2s linear infinite;
+            }
+            @keyframes lds-dual-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+            }
+            .btn-primary.focus, .btn-primary:focus,.btn-primary:active,
+            textarea:focus, 
+            textarea.form-control:focus, 
+            input.form-control:focus, 
+            input[type=text]:focus, 
+            input[type=password]:focus, 
+            input[type=email]:focus, 
+            input[type=number]:focus, 
+            [type=text].form-control:focus, 
+            [type=password].form-control:focus, 
+            [type=email].form-control:focus, 
+            [type=tel].form-control:focus, 
+            [contenteditable].form-control:focus {
+            box-shadow: inset 0 -1px 0 #ddd;
+            }
+            .lds-hourglass {
+            display: inline-block;
+            position: relative;
+            width: 64px;
+            height: 64px;
+            }
+            .lds-hourglass:after {
+            content: " ";
+            display: block;
+            border-radius: 50%;
+            width: 0;
+            height: 0;
+            margin: 6px;
+            box-sizing: border-box;
+            border: 26px solid #dfc;
+            border-color: #dfc transparent #dfc transparent;
+            animation: lds-hourglass 1.2s infinite;
+            }
+            @keyframes lds-hourglass {
+            0% {
+                transform: rotate(0);
+                animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+            }
+            50% {
+                transform: rotate(900deg);
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+            100% {
+                transform: rotate(1800deg);
+            }
+            }
+
+        </style>
+
+    
+</head>
+
+<body>
+    <!-- Insert HTML for contents. -->
+
+    
+
+    <div id="test">
+        <header class="bg-dark">
+            <div class="container text-center">
+                <nav class="navbar">
+                    <div class="ml-auto mr-auto">
+                        <a class=" btn btn-success" v-if="registerbutton" v-on:click.prevent="registersection">Register
+                        </a>
+                        <a class=" btn btn-primary" v-if="loginbutton" v-on:click.prevent="loginsection">Login
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <section v-if="login" class="fdb-block" style="background-image: url(https://cdn.pixabay.com/photo/2014/09/01/19/39/chess-433071_960_720.jpg); height: 100vh;" >
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
+                  <div class="fdb-box">
+                    <div class="row">
+                      <div class="col">
+                        <h1>Log In</h1>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="Email">
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col">
+                        <input type="password" class="form-control mb-1" placeholder="Password">
+                        <p class="text-right"><a href="https://www.froala.com">Recover Password</a></p>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col">
+                        <button class="btn btn-outline-secondary" type="button">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+        <section v-if="register" class="fdb-block" style="background-image: url(https://cdn.pixabay.com/photo/2014/09/01/19/39/chess-433071_960_720.jpg); height: 100vh;">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
+                  <div class="fdb-box">
+                    <div class="row">
+                      <div class="col">
+                        <h1>Register</h1>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col">
+                        <input v-model="name" type="text" class="form-control" placeholder="name">
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <input v-model="username" type="text" class="form-control" placeholder="username">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <input v-model="email" type="text" class="form-control" placeholder="email">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <input v-model="phone" id="phone" type="text" class="form-control" placeholder="phone">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col">
+                        <input v-model="password" type="password" class="form-control mb-1" placeholder="Password">
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <input v-model="passwordconf" type="password" class="form-control mb-1" placeholder="confirm password">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col">
+                        <button v-on:click="sendregister" class="btn btn-outline-secondary" type="button">Submit</button>
+                        <div v-if="isregister" class="lds-hourglass"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+        
+    </div>
+
+
+    <script src="https://unpkg.com/imask"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script src = "https://unpkg.com/vue"></script> -->
+
+
+    <script>
+
+new Vue({
+        el: '#test',
+        data: {
+            login: false,
+            register: true,
+            loginbutton: false,
+            registerbutton: true,
+            name:'',
+            username:'',
+            email:'',
+            phone:'',
+            password:'',
+            passwordconf:'',
+            isregister:false,
+            result:'',
+        },
+        delimiters:[ "${", "}"],
+        mounted(){
+            this.loginsection()
+        },
+        methods: {
+            loginsection: function () {
+                this.login =true;
+                this.register=false;
+                this.registerbutton=true;
+                this.loginbutton=false;
+                
+            },
+            registersection: function () {
+                this.login =false;
+                this.register=true;
+                this.registerbutton=false;
+                this.loginbutton=true;
+                
+            },
+            sendregister: function(){
+
+                this.isregister=true;
+
+                axios.defaults.xsrfCookieName = 'csrftoken'
+                axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+                axios.post('http://127.0.0.1:8000/post', {
+                    name: '' + this.name,
+                    username: '' + this.username,
+                    email: '' + this.email,
+                    phone:'' + this.phone,
+                    password: '' + this.password,
+                    password1: '' + this.passwordconf,
+                    }).then(response => {
+                                
+                        console.log(response)
+                        this.isregister=false;
+                        this.result= response.data;
+                        console.log(this.result.success)
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        this.isregister=false;
+                    })
+            },
+        }
+    });
+    </script>
+
+    <script>
+        var element = document.getElementById('phone');
+        var maskOptions = {
+        mask: '+{7}(000)000-00-00'
+        };
+        var mask = IMask(element, maskOptions);
+    </script>
+</body>
+</html> 
