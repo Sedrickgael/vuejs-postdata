@@ -143,6 +143,12 @@
                         <h1>Register</h1>
                       </div>
                     </div>
+                    <div v-if="returntrue" class="alert alert-success" role="alert">
+                        A simple success alert—check it out!
+                    </div>
+                    <div v-if="returnfalse" class="alert alert-danger" role="alert">
+                        A simple danger alert—check it out!
+                    </div>
                     <div class="row mt-4">
                       <div class="col">
                         <input v-model="name" type="text" class="form-control" placeholder="name">
@@ -160,7 +166,7 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col">
-                            <input v-model="phone" id="phone" type="text" class="form-control" placeholder="phone">
+                            <input v-model="phone" id="phone" type="tel" class="form-control" placeholder="phone" name="phone">
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -188,7 +194,7 @@
     </div>
 
 
-    <script src="https://unpkg.com/imask"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/5.2.1/imask.es.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- <script src = "https://unpkg.com/vue"></script> -->
@@ -211,6 +217,8 @@ new Vue({
             passwordconf:'',
             isregister:false,
             result:'',
+            returntrue: false,
+            returnfalse: false,
         },
         delimiters:[ "${", "}"],
         mounted(){
@@ -234,6 +242,8 @@ new Vue({
             sendregister: function(){
 
                 this.isregister=true;
+                this.returnfalse=false;
+                this.returntrue=false;
 
                 axios.defaults.xsrfCookieName = 'csrftoken'
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
@@ -250,6 +260,14 @@ new Vue({
                         this.isregister=false;
                         this.result= response.data;
                         console.log(this.result.success)
+                        if (this.result.success){
+                            this.returntrue=true
+                            this.returnfalse=false
+                        }else{
+                            this.returnfalse=true
+                            this.returntrue=false
+                        }
+
                     })
                     .catch((err) => {
                         console.log(err);
