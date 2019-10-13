@@ -186,7 +186,7 @@
                     </div>
                     <div class="row mt-4">
                       <div class="col">
-                        <button v-on:click="sendregister" class="btn btn-outline-secondary" type="button">Submit</button>
+                        <button  v-on:click="submitForm" class="btn btn-outline-secondary" type="submit">Submit</button>
                         <div v-if="isregister" class="lds-hourglass"></div>
                       </div>
                     </div>
@@ -245,10 +245,10 @@ new Vue({
                 this.loginbutton=true;
                 
             },
-            submitFile: function() {
+            submitForm: function() {
                 let formData = new FormData();
                 formData.append('file', this.file);
-                formData.append('nom', this.name);
+                formData.append('name', this.name);
                 formData.append('username', this.username);
                 formData.append('email', this.email);
                 formData.append('phone', this.phone);
@@ -257,7 +257,7 @@ new Vue({
                 
                 axios.defaults.xsrfCookieName = 'csrftoken'
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-                axios.post('http://127.0.0.1:8000/postimage',
+                axios.post('http://127.0.0.1:8000/postform',
                     formData, 
                     {
                         headers: {

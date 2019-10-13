@@ -34,7 +34,7 @@ def senddata(request):
         issuccess=False
     
     compt=1
-    while compt <10000000:
+    while compt <1000:
         compt += 1
     
     datas = {
@@ -46,32 +46,26 @@ def senddata(request):
     return JsonResponse(datas, safe=False)
 
 
-def postimage(request):
-    nom = request.POST.get('nom')
-    username = request.POST.get('user')
+def postform(request):
+    name = request.POST.get('name')
+    username = request.POST.get('username')
     password = request.POST.get('password')
     passwordconf = request.POST.get('passwordconf')
     email = request.POST.get('email')
     phone = request.POST.get('phone')
     
     issucces = False
-    cont = 1
     
-    if username is not None and name is not None and password is not None and email is not None and phone is not None:
+    if username is not None and name is not None and password is not None and email is not None and phone is not None and passwordconf is not None:
         image = request.FILES['file']
         issucces = True
-        h = Utilisateur(nom=nom,username=username,password=password,email=email,phone=phone,image=image)
+        h = Utilisateur(nom=name,username=username,password=password,email=email,phone=phone,image=image)
         h.save()
-        print(nom,username,phone,email,password,passwordconf,image)
+        print(name,username,phone,email,password,passwordconf,image)
     else:
         issucces = False
-
-    while cont < 100000000:
-        cont += 1
-
     datas = {
-        'succes': True,
-        'nom': nom,
-        'cont': cont
+        'succes': issucces,
+        'name': name,
     }
     return JsonResponse(datas, safe=False)

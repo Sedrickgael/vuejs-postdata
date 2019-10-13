@@ -34,7 +34,6 @@ INSTALLED_APPS = [
 
     'admin_interface',
     'colorfield',   
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'datapost.apps.DatapostConfig',
     'django_admin_generator',
+    
 ]
 
 MIDDLEWARE = [
