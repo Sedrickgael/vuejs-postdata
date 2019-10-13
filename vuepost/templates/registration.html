@@ -133,10 +133,10 @@
               </div>
             </div>
         </section>
-        <section v-if="register" class="fdb-block" style="background-image: url(https://cdn.pixabay.com/photo/2014/09/01/19/39/chess-433071_960_720.jpg); height: 100vh;">
+        <section v-if="register" class="fdb-block " style="background-image: url(https://cdn.pixabay.com/photo/2014/09/01/19/39/chess-433071_960_720.jpg); height: 100vh;">
             <div class="container">
               <div class="row justify-content-center">
-                <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
+                <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center" style="margin-bottom: 100%" >
                   <div class="fdb-box">
                     <div class="row">
                       <div class="col">
@@ -180,6 +180,11 @@
                         </div>
                     </div>
                     <div class="row mt-4">
+                        <div class="col">
+                            <input type="file" v-on:change="handleFileUploaded()" id="file" ref="file" class="form-control" placeholder="Image">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
                       <div class="col">
                         <button v-on:click="sendregister" class="btn btn-outline-secondary" type="button">Submit</button>
                         <div v-if="isregister" class="lds-hourglass"></div>
@@ -219,6 +224,7 @@ new Vue({
             result:'',
             returntrue: false,
             returnfalse: false,
+            file:'',
         },
         delimiters:[ "${", "}"],
         mounted(){
@@ -238,6 +244,41 @@ new Vue({
                 this.registerbutton=false;
                 this.loginbutton=true;
                 
+            },
+            submitFile: function() {
+                let formData = new FormData();
+                formData.append('file', this.file);
+                formData.append('nom', this.nom);
+                formData.append('username', this.username);
+                formData.append('email', this.email);
+                formData.append('phone', this.phone);
+                formData.append('password', this.password);
+                formData.append('passwordconf', this.passwordconf);
+                
+                axios.defaults.xsrfCookieName = 'csrftoken'
+                axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+                axios.post('http://127.0.0.1:8000/postimage',
+                    formData, 
+                    {
+                        headers: {
+                            
+                            'Content-Type': 'multipart/form-data',
+                        }
+                }).then((response) => {
+                    console.log(response.data);
+                    this.isregister = false;
+                    console.log(response.data.succes);
+                    this.result = response.data;
+                    console.log(this.result.succes);
+                    
+                })
+                .catch((err) => {
+                    console.log(err);
+                    this.isregister = false;
+                })
+            },
+            handleFileUploaded: function() {
+                this.file = this.$refs.file.files[0];
             },
             sendregister: function(){
 
