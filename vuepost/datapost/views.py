@@ -57,12 +57,12 @@ def postimage(request):
     issucces = False
     cont = 1
     
-    if user is not None and nom is not None and password is not None and repass is not None and email is not None and contact is not None:
+    if username is not None and name is not None and password is not None and email is not None and phone is not None:
         image = request.FILES['file']
         issucces = True
-        h = Register(nom=nom,user=user,password=password,repass=repass,email=email,contact=contact,image=image)
+        h = Utilisateur(nom=nom,username=username,password=password,email=email,phone=phone,image=image)
         h.save()
-        print(nom,user,contact,email,password,repass,image)
+        print(nom,username,phone,email,password,passwordconf,image)
     else:
         issucces = False
 

@@ -80,22 +80,16 @@
 
 from django.db import models
 
-class utilisateur(models.Model):
-    """Model definition for utilisateur."""
 
-    name = models.CharField( max_length=50)
-    email = models.EmailField(verbose_name='email address',max_length=255,unique=True)
-    phone = models.CharField( max_length=50)
-    username = models.CharField( max_length=50)
-    password = models.CharField( max_length=50)
-    avatar = models.ImageField(upload_to='images/%Y/%m/%d/', default='static/images/undraw_female_avatar_l3ey.svg')
+# Create your models here.
 
-    class Meta:
-        """Meta definition for utilisateur."""
-
-        verbose_name = 'utilisateur'
-        verbose_name_plural = 'utilisateurs'
-
-    def __str__(self):
-        """Unicode representation of utilisateur."""
-        return self.username
+class Utilisateur(models.Model):
+    nom = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
+    password = models.CharField(max_length=8)
+    email = models.EmailField()
+    phone = models.CharField(max_length=8)
+    image = models.ImageField(upload_to='profile/', default='useravatar.png')
+    status = models.BooleanField(default=True)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_upd = models.DateTimeField(auto_now=True)
